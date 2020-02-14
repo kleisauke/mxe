@@ -20,6 +20,7 @@ define $(PKG)_BUILD
         --host='$(BUILD)' \
         --build='$(BUILD)' \
         --prefix='$(PREFIX)/$(TARGET)' \
-        --target='$(TARGET)'
+        --target='$(TARGET)' \
+        --enable-silent-rules
     $(MAKE) -C '$(1)/mingw-w64-tools/gendef' -j '$(JOBS)' install
 endef
