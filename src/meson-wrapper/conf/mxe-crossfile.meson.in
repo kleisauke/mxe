@@ -1,8 +1,8 @@
 # This file is part of MXE. See LICENSE.md for licensing information.
 
 [binaries]
-c = '@PREFIX@/bin/@TARGET@-gcc'
-cpp = '@PREFIX@/bin/@TARGET@-g++'
+c = '@PREFIX@/bin/@TARGET@-@CC@'
+cpp = '@PREFIX@/bin/@TARGET@-@CXX@'
 ar = '@PREFIX@/bin/@TARGET@-ar'
 ranlib = '@PREFIX@/bin/@TARGET@-ranlib'
 ld = '@PREFIX@/bin/@TARGET@-ld'

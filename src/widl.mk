@@ -23,7 +23,9 @@ define $(PKG)_BUILD
         --host='$(BUILD)' \
         --build='$(BUILD)' \
         --prefix='$(PREFIX)' \
-        --target='$(TARGET)'
+        --target='$(TARGET)' \
+        --enable-silent-rules \
+        $(if $(IS_LLVM), --with-widl-includedir='$(PREFIX)/$(TARGET)/$(PROCESSOR)-w64-mingw32/include')
     $(MAKE) -C '$(1)/mingw-w64-tools/widl' -j '$(JOBS)' install
 
     # create cmake file
