@@ -2,38 +2,97 @@
 
 PKG             := llvm
 $(PKG)_WEBSITE  := https://llvm.org/
-$(PKG)_DESCR    := Compiler infrastructure and toolchain libraries used for building compilers and JIT-based systems.
-$(PKG)_VERSION  := 23.1.3
+$(PKG)_DESCR    := A collection of modular and reusable compiler and toolchain technologies
 $(PKG)_IGNORE   :=
-$(PKG)_CHECKSUM := 791b560dee8f65fdf7b19ad5db0b4ac627467824d8b687957d8a437b806103f0
-$(PKG)_GH_CONF  := llvm/llvm-project/tags,llvmorg-
-$(PKG)_DEPS     := cc curl icu4c isl libxml2 pkgconf protobuf zlib zstd
+$(PKG)_VERSION  := 23.1.4
+$(PKG)_CHECKSUM := 819ecf7351f1a66f76b2d701d8942faaf5faeb324cb90c9d5b090de142434bb2
+$(PKG)_GH_CONF  := llvm/llvm-project/releases,llvmorg-,,,,.tar.xz
+$(PKG)_SUBDIR   := $(PKG)-project-$($(PKG)_VERSION).src
+$(PKG)_FILE     := $($(PKG)_SUBDIR).tar.xz
+$(PKG)_DEPS     := cc $(BUILD)~$(PKG)
+$(PKG)_TARGETS  := $(BUILD) $(MXE_TARGETS)
+
+$(PKG)_DEPS_$(BUILD) := cmake
+
+define $(PKG)_BUILD_$(BUILD)
+    cd '$(BUILD_DIR)' && cmake '$(SOURCE_DIR)/llvm' \
+        -DCMAKE_INSTALL_PREFIX='$(PREFIX)/$(BUILD)' \
+        -DCMAKE_BUILD_TYPE=Release \
+        -DLLVM_ENABLE_ASSERTIONS=OFF \
+        -DLLVM_ENABLE_PROJECTS='clang;lld;lldb' \
+        -DLLVM_TARGETS_TO_BUILD='AArch64;X86' \
+        -DLLVM_TOOLCHAIN_TOOLS='llvm-ar;llvm-ranlib;llvm-objdump;llvm-rc;llvm-cvtres;llvm-nm;llvm-strings;llvm-readobj;llvm-dlltool;llvm-pdbutil;llvm-objcopy;llvm-strip;llvm-cov;llvm-profdata;llvm-addr2line;llvm-symbolizer;llvm-windres' \
+        -DLLVM_BUILD_DOCS=OFF \
+        -DLLVM_BUILD_EXAMPLES=OFF \
+        -DLLVM_BUILD_TESTS=OFF \
+        -DLLVM_BUILD_UTILS=OFF \
+        -DLLVM_ENABLE_BINDINGS=OFF \
+        -DLLVM_ENABLE_DOXYGEN=OFF \
+        -DLLVM_ENABLE_OCAMLDOC=OFF \
+        -DLLVM_ENABLE_SPHINX=OFF \
+        -DLLVM_INCLUDE_DOCS=OFF \
+        -DLLVM_INCLUDE_EXAMPLES=OFF \
+        -DLLVM_INCLUDE_TESTS=OFF \
+        -DLLVM_INCLUDE_UTILS=OFF \
+        -DLLDB_ENABLE_LIBEDIT=OFF \
+        -DLLDB_ENABLE_PYTHON=OFF \
+        -DLLDB_ENABLE_CURSES=OFF \
+        -DLLDB_ENABLE_LUA=OFF \
+        -DLLDB_INCLUDE_TESTS=OFF
+    $(MAKE) -C '$(BUILD_DIR)' -j '$(JOBS)'
+    $(MAKE) -C '$(BUILD_DIR)' -j 1 $(subst -,/,$(INSTALL_STRIP_TOOLCHAIN))
+endef
+
+define $(PKG)_BUILD_COMPILER_RT
+    $(eval CLANG_RESOURCE_DIR := $(shell $(PREFIX)/$(BUILD)/bin/clang --print-resource-dir))
+
+    mkdir '$(BUILD_DIR).compiler-rt'
+    cd '$(BUILD_DIR).compiler-rt' && $(TARGET)-cmake '$(SOURCE_DIR)/compiler-rt/lib/builtins' \
+        -DCMAKE_INSTALL_PREFIX='$(CLANG_RESOURCE_DIR)' \
+        -DCMAKE_AR='$(PREFIX)/$(BUILD)/bin/llvm-ar' \
+        -DCMAKE_RANLIB='$(PREFIX)/$(BUILD)/bin/llvm-ranlib' \
+        -DCMAKE_C_COMPILER_TARGET='$(PROCESSOR)-w64-windows-gnu' \
+        -DCOMPILER_RT_DEFAULT_TARGET_ONLY=TRUE \
+        -DCOMPILER_RT_USE_BUILTINS_LIBRARY=TRUE \
+        -DCOMPILER_RT_EXCLUDE_ATOMIC_BUILTIN=FALSE
+    $(MAKE) -C '$(BUILD_DIR).compiler-rt' -j '$(JOBS)'
+    $(MAKE) -C '$(BUILD_DIR).compiler-rt' -j 1 $(subst -,/,$(INSTALL_STRIP_TOOLCHAIN))
+endef
+
+# libunwind / libcxxabi / libcxx
+define $(PKG)_BUILD_RUNTIMES
+    mkdir '$(BUILD_DIR).runtimes'
+    cd '$(BUILD_DIR).runtimes' && $(TARGET)-cmake '$(SOURCE_DIR)/runtimes' \
+        -DCMAKE_INSTALL_PREFIX='$(PREFIX)/$(TARGET)/$(PROCESSOR)-w64-mingw32' \
+        -DCMAKE_CXX_COMPILER_TARGET='$(PROCESSOR)-w64-windows-gnu' \
+        -DCMAKE_C_COMPILER_WORKS=TRUE \
+        -DCMAKE_CXX_COMPILER_WORKS=TRUE \
+        -DCMAKE_AR='$(PREFIX)/$(BUILD)/bin/llvm-ar' \
+        -DCMAKE_RANLIB='$(PREFIX)/$(BUILD)/bin/llvm-ranlib' \
+        -DLLVM_ENABLE_RUNTIMES='libunwind;libcxxabi;libcxx' \
+        -DLIBUNWIND_USE_COMPILER_RT=TRUE \
+        -DLIBUNWIND_ENABLE_SHARED=$(CMAKE_SHARED_BOOL) \
+        -DLIBUNWIND_ENABLE_STATIC=$(CMAKE_STATIC_BOOL) \
+        -DLIBCXX_USE_COMPILER_RT=ON \
+        -DLIBCXX_ENABLE_SHARED=$(CMAKE_SHARED_BOOL) \
+        -DLIBCXX_ENABLE_STATIC=$(CMAKE_STATIC_BOOL) \
+        -DLIBCXX_ENABLE_STATIC_ABI_LIBRARY=TRUE \
+        -DLIBCXX_CXX_ABI=libcxxabi \
+        -DLIBCXX_LIBDIR_SUFFIX='' \
+        -DLIBCXX_INCLUDE_TESTS=FALSE \
+        -DLIBCXX_ENABLE_ABI_LINKER_SCRIPT=FALSE \
+        -DLIBCXXABI_USE_COMPILER_RT=ON \
+        -DLIBCXXABI_USE_LLVM_UNWINDER=ON \
+        -DLIBCXXABI_ENABLE_SHARED=OFF \
+        -DLIBCXXABI_LIBDIR_SUFFIX='' \
+        $(if $(IS_X86), \
+            -DCMAKE_C_FLAGS_INIT='-D__USE_MINGW_ANSI_STDIO=1' \
+            -DCMAKE_CXX_FLAGS_INIT='-D__USE_MINGW_ANSI_STDIO=1')
+    $(MAKE) -C '$(BUILD_DIR).runtimes' -j '$(JOBS)'
+    $(MAKE) -C '$(BUILD_DIR).runtimes' -j 1 $(subst -,/,$(INSTALL_STRIP_TOOLCHAIN))
+endef
 
 define $(PKG)_BUILD
-
-    # configure package with cmake
-    cd "$(BUILD_DIR)" && "$(TARGET)-cmake" "$(SOURCE_DIR)/llvm" \
-        -DCMAKE_INSTALL_PREFIX="$(PREFIX)/$(TARGET)" \
-        -DCMAKE_PREFIX_PATH="$(PREFIX)/$(TARGET)" \
-        -DBUILD_SHARED_LIBS=$(CMAKE_SHARED_BOOL) \
-        -DLLVM_FORCE_VC_REPOSITORY=https://github.com/llvm/llvm-project.git \
-        -DLLVM_TARGETS_TO_BUILD=X86 \
-        -DLLVM_ENABLE_PROJECTS=clang \
-        -DLLVM_BUILD_TOOLS=ON \
-        -DLLVM_BUILD_TESTS=OFF \
-        -DLLVM_INCLUDE_TOOLS=ON \
-        -DLLVM_INCLUDE_TESTS=OFF \
-        -DLLVM_INCLUDE_EXAMPLES=OFF \
-        -DLLVM_INSTALL_TOOLCHAIN_ONLY=OFF \
-        -DCMAKE_BUILD_TYPE=Release
-
-    # build package and install
-    $(MAKE) -C "$(BUILD_DIR)" -j $(JOBS)
-    $(MAKE) -C "$(BUILD_DIR)" -j 1 install
-
-    # compile a test program to verify the library is usable
-    # FIXME: llvm-config.exe is a Windows exectuable which cannot run on build OS
-    #"$(TARGET)-g++" -Wall -Wextra "$(TEST_FILE)" \
-    #    `"$(PREFIX)/$(TARGET)/bin/llvm-config.exe" --cxxflags --libs core support irreader --system-libs` \
-    #    -o "$(PREFIX)/$(TARGET)/bin/test-$(PKG).exe"
+    $($(PKG)_BUILD_COMPILER_RT)
+    $($(PKG)_BUILD_RUNTIMES)
 endef
