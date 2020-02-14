@@ -1,8 +1,8 @@
 # This file is part of MXE. See LICENSE.md for licensing information.
 
 [binaries]
-c = '@PREFIX@/bin/@TARGET@-gcc'
-cpp = '@PREFIX@/bin/@TARGET@-g++'
+c = '@PREFIX@/bin/@TARGET@-@CC@'
+cpp = '@PREFIX@/bin/@TARGET@-@CXX@'
 ar = '@PREFIX@/bin/@TARGET@-ar'
 ranlib = '@PREFIX@/bin/@TARGET@-ranlib'
 ld = '@PREFIX@/bin/@TARGET@-ld'
@@ -11,6 +11,10 @@ windres = '@PREFIX@/bin/@TARGET@-windres'
 windmc = '@PREFIX@/bin/@TARGET@-windmc'
 pkgconfig = '@PREFIX@/bin/@TARGET@-pkg-config'
 cmake = '@PREFIX@/bin/@TARGET@-cmake'
+glib-mkenums = '@PREFIX@/@TARGET@/bin/glib-mkenums'
+glib-genmarshal = '@PREFIX@/@TARGET@/bin/glib-genmarshal'
+glib-compile-schemas = '/usr/bin/glib-compile-schemas'
+glib-compile-resources = '/usr/bin/glib-compile-resources'
 # MXE forbids this
 # exe_wrapper = 'wine'
 
