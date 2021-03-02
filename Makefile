@@ -748,6 +748,7 @@ $(foreach PKG,$(PKGS),$(eval $(call PKG_RULE,$(PKG),$(call TMP_DIR,$(PKG)))))
 ifeq ($(findstring darwin,$(BUILD)),)
     NONET_LIB := $(PREFIX)/$(BUILD)/lib/nonetwork.so
     PRELOAD   := LD_PRELOAD='$(NONET_LIB)'
+    NONET_LDFLAGS := -ldl
 else
     NONET_LIB := $(PREFIX)/$(BUILD)/lib/nonetwork.dylib
     PRELOAD   := DYLD_FORCE_FLAT_NAMESPACE=1 DYLD_INSERT_LIBRARIES='$(NONET_LIB)' \
@@ -757,7 +758,7 @@ endif
 
 $(NONET_LIB): $(TOP_DIR)/tools/nonetwork.c | $(PREFIX)/$(BUILD)/lib/.gitkeep
 	@$(PRINTF_FMT) '[nonet lib]' '$@'
-	+@$(BUILD_CC) -shared -fPIC $(NONET_CFLAGS) -o $@ $<
+	+@$(BUILD_CC) -shared -fPIC $(NONET_CFLAGS) $< -o $@ $(NONET_LDFLAGS)
 
 .PHONY: nonet-lib
 nonet-lib: $(NONET_LIB)
@@ -809,7 +810,6 @@ $(PREFIX)/$(3)/installed/$(1): $(PKG_MAKEFILES) \
 	        @if ! (time $(PRELOAD) WINEPREFIX='/dev/null' \
 	               $(MAKE) -f '$(MAKEFILE)' \
 	                   'build-only-$(1)_$(3)' \
-	                   WGET=false \
 	               ) &> '$(LOG_DIR)/$(TIMESTAMP)/$(1)_$(3)'; then \
 	            echo; \
 	            echo 'Failed to build package $(1) for target $(3)!'; \
