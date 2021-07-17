@@ -20,6 +20,7 @@ define $(PKG)_BUILD
         -DLIBTYPE=$(if $(BUILD_SHARED),shared,static) \
         -DPREFIX=$(PREFIX) \
         -DTARGET=$(TARGET) \
+        -DSTRIP=$(if $(STRIP_LIB),true,false) \
         -DBUILD=$(BUILD) \
         -DCPU_FAMILY=$(if $(findstring i686,$(PROCESSOR)),x86,$(PROCESSOR)) \
         -DCPU=$(PROCESSOR) \
@@ -38,10 +39,8 @@ define $(PKG)_BUILD
 
     # create the prefixed Meson wrapper script
     '$(PREFIX)/bin/cmake-configure-file' \
-        -DLIBTYPE=$(if $(BUILD_SHARED),shared,static) \
         -DPREFIX=$(PREFIX) \
         -DTARGET=$(TARGET) \
-        -DBUILD=$(BUILD) \
         -DMESON_EXECUTABLE=$(PREFIX)/$(BUILD)/bin/meson \
         -DMESON_CROSS_FILE='$(PREFIX)/$(TARGET)/share/meson/mxe-crossfile.meson' \
         -DINPUT='$(PWD)/src/meson-wrapper/conf/target-meson.in' \
