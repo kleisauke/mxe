@@ -8,13 +8,8 @@ fi
 
 if [[ "$NO_MESON_CROSSFILE" == "1" ]]; then
     echo "== Skip using Meson cross file: @MESON_CROSS_FILE@"
-    exec meson "$@"
+    exec meson setup "$@"
 else
     echo "== Using Meson cross file: @MESON_CROSS_FILE@"
-    exec @MESON_EXECUTABLE@ \
-              --cross-file="@MESON_CROSS_FILE@" \
-              --default-library="@LIBTYPE@" \
-              --prefix="@PREFIX@/@TARGET@" \
-              --libdir=lib \
-              "$@"
+    exec @MESON_EXECUTABLE@ setup --cross-file="@MESON_CROSS_FILE@" "$@"
 fi
