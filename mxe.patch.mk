@@ -115,9 +115,9 @@ $(PREFIX)/installed/patch/%:
 	@touch '$@'
 
 
-PATCH_FORMAT_PATCHES := $(shell find $(MXE_PLUGIN_DIRS) plugins -name "*-$(PATCH_NAME).patch")
-PATCH_FORMAT_PKGS    := $(sort $(subst -$(PATCH_NAME),,$(basename $(notdir $(PATCH_FORMAT_PATCHES)))))
-PATCH_FORMAT_DIRS    := $(sort $(basename $(dir $(PATCH_FORMAT_PATCHES))))
+PATCH_FORMAT_PATCHES = $(shell find $(MXE_PLUGIN_DIRS) plugins -name "*-$(PATCH_NAME).patch")
+PATCH_FORMAT_PKGS    = $(sort $(subst -$(PATCH_NAME),,$(basename $(notdir $(PATCH_FORMAT_PATCHES)))))
+PATCH_FORMAT_DIRS    = $(sort $(basename $(dir $(PATCH_FORMAT_PATCHES))))
 
 .PHONY: refresh-patches
 refresh-patches:

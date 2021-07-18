@@ -24,8 +24,8 @@ define GET_LATEST_VERSION
     tail -1
 endef
 
-ALL_DIRS := $(MXE_PLUGIN_DIRS) $(shell find $(realpath $(TOP_DIR)/plugins) -mindepth 1 -type d)
-GET_LATEST_VERSION_PKGS := $(sort \
+ALL_DIRS = $(MXE_PLUGIN_DIRS) $(shell find $(realpath $(TOP_DIR)/plugins) -mindepth 1 -type d)
+GET_LATEST_VERSION_PKGS = $(sort \
     $(basename $(notdir $(shell grep -s -l GET_LATEST_VERSION $(addsuffix /*.mk,$(ALL_DIRS))))))
 
 .PHONY: check-get-latest-version
