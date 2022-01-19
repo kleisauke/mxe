@@ -337,12 +337,15 @@ endef
 PKG_CHECKSUM = \
     $(OPENSSL) dgst -sha256 '$(or $(2),$(PKG_DIR)/$($(1)_FILE))' 2>/dev/null | $(SED) -n 's,^.*\([0-9a-f]\{64\}\)$$,\1,p'
 
-CHECK_PKG_ARCHIVE = \
+CHECK_PKG_ARCHIVE_NO_SKIP = \
     $(if $($(1)_SOURCE_TREE),\
         $(PRINTF_FMT) '[local]' '$(1)' '$($(1)_SOURCE_TREE)' | $(RTRIM)\
-    $(else),$(if $(SKIP_CHECKSUM),true, \
+    $(else), \
         [ '$($(1)_CHECKSUM)' == "`$$(call PKG_CHECKSUM,$(1),$(2))`" ]\
-    ))
+    )
+
+CHECK_PKG_ARCHIVE = \
+	$(if $(SKIP_CHECKSUM),true,$(call CHECK_PKG_ARCHIVE_NO_SKIP,$(1),$(2)))
 
 ESCAPE_PKG = \
 	echo '$($(1)_FILE)' | perl -lpe 's/([^A-Za-z0-9])/sprintf("%%%02X", ord($$$$1))/seg'
@@ -706,7 +709,7 @@ download-only-$(1): download-only-$($(1)_FILE)
 download-only-$($(1)_FILE)::
 	$(and $($(1)_URL),
 	@$$(if $$(REMOVE_DOWNLOAD),rm -f '$(PKG_DIR)/$($(1)_FILE)')
-	@if ! $(call CHECK_PKG_ARCHIVE,$(1)); then \
+	@if ! $(call CHECK_PKG_ARCHIVE_NO_SKIP,$(1)); then \
 	    $(PRINTF_FMT) '[download]' '$($(1)_FILE)' | $(RTRIM); \
 	    [ -d '$(LOG_DIR)/$(TIMESTAMP)' ] || mkdir -p '$(LOG_DIR)/$(TIMESTAMP)'; \
 	    ($(call DOWNLOAD_PKG_ARCHIVE,$(1))) &> '$(LOG_DIR)/$(TIMESTAMP)/$(1)-download'; \
