@@ -97,6 +97,9 @@ STRIP_TOOLCHAIN := $(true)
 STRIP_LIB       := $(false)
 STRIP_EXE       := $(true)
 
+# set to non-empty or $(true) to enable the installation of PDBs
+INSTALL_PDB := $(false)
+
 # disable by setting MXE_USE_CCACHE
 MXE_USE_CCACHE      := mxe
 MXE_CCACHE_DIR      := $(PWD)/.ccache
@@ -890,6 +893,7 @@ build-only-$(1)_$(3):
 	    @echo 'settings.mk'
 	    @cat '$(TOP_DIR)/settings.mk'
 	    $(if $(STRIP_EXE),-$(TARGET)-strip '$(PREFIX)/$(TARGET)/bin/test-$(PKG).exe')
+	    $(if $(INSTALL_PDB),@find '$(2)' -name '*.pdb' -exec cp -prv {} '$(PREFIX)/$(TARGET)/lib' \;)
 	    (du -k -d 0 '$(2)' 2>/dev/null || du -k --max-depth 0 '$(2)') | $(SED) -n 's/^\(\S*\).*/du: \1 KiB/p'
 	    rm -rfv  '$(2)'
 	    )
