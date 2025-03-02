@@ -19,14 +19,19 @@ define $(PKG)_UPDATE
 endef
 
 define $(PKG)_BUILD
-    cd '$(1)/mingw-w64-tools/widl' && ./configure \
+    $(eval unexport CFLAGS)
+    $(eval unexport CXXFLAGS)
+    $(eval unexport LDFLAGS)
+
+    cd '$(BUILD_DIR)' && '$(SOURCE_DIR)/mingw-w64-tools/widl/configure' \
         --host='$(BUILD)' \
         --build='$(BUILD)' \
         --prefix='$(PREFIX)' \
         --target='$(TARGET)' \
         --enable-silent-rules \
         $(if $(IS_LLVM), --with-widl-includedir='$(PREFIX)/$(TARGET)/$(PROCESSOR)-w64-mingw32/include')
-    $(MAKE) -C '$(1)/mingw-w64-tools/widl' -j '$(JOBS)' install
+    $(MAKE) -C '$(BUILD_DIR)' -j '$(JOBS)'
+    $(MAKE) -C '$(BUILD_DIR)' -j 1 $(INSTALL_STRIP_TOOLCHAIN)
 
     # create cmake file
     mkdir -p '$(CMAKE_TOOLCHAIN_DIR)'
