@@ -15,11 +15,16 @@ define $(PKG)_UPDATE
 endef
 
 define $(PKG)_BUILD
-    cd '$(1)/mingw-w64-tools/gendef' && ./configure \
+    $(eval unexport CFLAGS)
+    $(eval unexport CXXFLAGS)
+    $(eval unexport LDFLAGS)
+
+    cd '$(BUILD_DIR)' && '$(SOURCE_DIR)/mingw-w64-tools/gendef/configure' \
         CFLAGS='-Wno-implicit-fallthrough' \
         --host='$(BUILD)' \
         --build='$(BUILD)' \
         --prefix='$(PREFIX)/$(TARGET)' \
         --target='$(TARGET)'
-    $(MAKE) -C '$(1)/mingw-w64-tools/gendef' -j '$(JOBS)' install
+    $(MAKE) -C '$(BUILD_DIR)' -j '$(JOBS)'
+    $(MAKE) -C '$(BUILD_DIR)' -j 1 $(INSTALL_STRIP_TOOLCHAIN)
 endef
