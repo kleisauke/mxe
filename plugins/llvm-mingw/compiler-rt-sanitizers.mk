@@ -12,6 +12,10 @@ define $(PKG)_BUILD
 
     $(call PREPARE_PKG_SOURCE,llvm,$(SOURCE_DIR))
 
+    $(eval unexport CFLAGS)
+    $(eval unexport CXXFLAGS)
+    $(eval unexport LDFLAGS)
+
     cd '$(BUILD_DIR)' && $(TARGET)-cmake '$(SOURCE_DIR)/$(llvm_SUBDIR)/compiler-rt' \
         -DCMAKE_INSTALL_PREFIX='$(CLANG_RESOURCE_DIR)' \
         -DCMAKE_AR='$(PREFIX)/$(BUILD)/bin/llvm-ar' \
