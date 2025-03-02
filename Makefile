@@ -861,6 +861,9 @@ build-only-$(1)_$(3): CMAKE_STATIC_BOOL = $(if $(findstring shared,$(3)),OFF,ON)
 build-only-$(1)_$(3): CMAKE_SHARED_BOOL = $(if $(findstring shared,$(3)),ON,OFF)
 build-only-$(1)_$(3):
 	$(if $(value $(call LOOKUP_PKG_RULE,$(1),BUILD,$(3))),
+	    $(eval export CFLAGS   = $($(if $(BUILD_NATIVE),BUILD,TARGET)_CFLAGS))
+	    $(eval export CXXFLAGS = $($(if $(BUILD_NATIVE),BUILD,TARGET)_CXXFLAGS))
+	    $(eval export LDFLAGS  = $($(if $(BUILD_NATIVE),BUILD,TARGET)_LDFLAGS))
 	    uname -a
 	    - git log --pretty=tformat:"%H - %s [%ar] [%d]" -1
 	    lsb_release -a 2>/dev/null || sw_vers 2>/dev/null || true
