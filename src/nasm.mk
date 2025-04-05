@@ -9,6 +9,7 @@ $(PKG)_CHECKSUM := 1412a1c760bbd05db026b6c0d1657affd6631cd0a63cddb6f73cc6d4aa616
 $(PKG)_SUBDIR   := $(PKG)-$($(PKG)_VERSION)
 $(PKG)_FILE     := $(PKG)-$($(PKG)_VERSION).tar.xz
 $(PKG)_URL      := https://www.nasm.us/pub/$(PKG)/releasebuilds/$($(PKG)_VERSION)/$($(PKG)_FILE)
+$(PKG)_URL_2    := https://distfiles.alpinelinux.org/distfiles/v3.21/$($(PKG)_FILE)
 $(PKG)_TARGETS  := $(BUILD)
 $(PKG)_DEPS     :=
 
