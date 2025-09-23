@@ -6,7 +6,7 @@ $(PKG)_DESCR    := vulkan headers
 $(PKG)_IGNORE   :=
 $(PKG)_VERSION  := 1.3.280
 $(PKG)_CHECKSUM := 717b49c52dbd37c78cf2f7f0fc715292c42e74841219e6cca918cd293ad5dce4
-$(PKG)_GH_CONF  := KhronosGroup/Vulkan-Headers/releases,v
+$(PKG)_GH_CONF  := KhronosGroup/Vulkan-Headers/tags,v
 $(PKG)_DEPS     := cc
 
 define $(PKG)_BUILD
