@@ -9,7 +9,7 @@ $(PKG)_MAJOR    := $(word 1,$(subst ., ,$($(PKG)_VERSION)))
 $(PKG)_CHECKSUM := 3a2e7a47604ba702f345878308e6fefeca612ee895cf4a5f222e7955fabfe0c0
 $(PKG)_GH_CONF  := unicode-org/icu/releases/latest,release-,,,-
 $(PKG)_SUBDIR   := icu
-$(PKG)_URL      := $($(PKG)_WEBSITE)/releases/download/release-$($(PKG)_VERSION)/icu4c-$($(PKG)_VERSION)-sources.tgz
+$(PKG)_FILE     := icu4c-$($(PKG)_VERSION)-sources.tgz
 $(PKG)_DEPS     := cc $(BUILD)~$(PKG)
 
 $(PKG)_TARGETS       := $(BUILD) $(MXE_TARGETS)
