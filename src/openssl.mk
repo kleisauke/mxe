@@ -6,9 +6,6 @@ $(PKG)_IGNORE   :=
 $(PKG)_VERSION  := 3.6.0
 $(PKG)_CHECKSUM := b6a5f44b7eb69e3fa35dbf15524405b44837a481d43d81daddde3ff21fcbb8e9
 $(PKG)_GH_CONF  := openssl/openssl/releases,openssl-
-$(PKG)_SUBDIR   := openssl-$($(PKG)_VERSION)
-$(PKG)_FILE     := openssl-$($(PKG)_VERSION).tar.gz
-$(PKG)_URL      := https://github.com/openssl/openssl/releases/download/openssl-$($(PKG)_VERSION)/$($(PKG)_FILE)
 $(PKG)_DEPS     := cc zlib
 
 $(PKG)_MAKE = $(MAKE) -C '$(1)' -j '$(JOBS)'\
