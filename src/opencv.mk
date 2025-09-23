@@ -6,7 +6,7 @@ $(PKG)_DESCR    := OpenCV
 $(PKG)_IGNORE   :=
 $(PKG)_VERSION  := 4.6.0
 $(PKG)_CHECKSUM := 1ec1cba65f9f20fe5a41fda1586e01c70ea0c9a6d7b67c9e13edf0cfe2239277
-$(PKG)_GH_CONF  := opencv/opencv/releases
+$(PKG)_GH_CONF  := opencv/opencv/tags
 $(PKG)_DEPS     := cc eigen ffmpeg jasper jpeg libpng libwebp \
                    openblas openexr protobuf tiff xz zlib
 
