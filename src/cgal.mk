@@ -5,10 +5,9 @@ $(PKG)_WEBSITE  := https://www.cgal.org/
 $(PKG)_IGNORE   :=
 $(PKG)_VERSION  := 5.5
 $(PKG)_CHECKSUM := 40aec3401a8ed57ae6fd5185dfbb6c360b3aa653860407a9add074cf8e007108
-$(PKG)_GH_CONF  := CGAL/cgal/releases, v
+$(PKG)_GH_CONF  := CGAL/cgal/releases,v
 $(PKG)_SUBDIR   := CGAL-$($(PKG)_VERSION)
 $(PKG)_FILE     := CGAL-$($(PKG)_VERSION)-library.tar.xz
-$(PKG)_URL      := https://github.com/CGAL/cgal/releases/download/v$($(PKG)_VERSION)/$($(PKG)_FILE)
 $(PKG)_DEPS     := cc boost gmp mpfr qtbase
 
 define $(PKG)_BUILD
