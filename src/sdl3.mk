@@ -8,7 +8,7 @@ $(PKG)_VERSION  := 3.2.20
 $(PKG)_SUBDIR   := SDL3-$($(PKG)_VERSION)
 $(PKG)_FILE     := SDL3-$($(PKG)_VERSION).tar.gz
 $(PKG)_CHECKSUM := 467600ae090dd28616fa37369faf4e3143198ff1da37729b552137e47f751a67
-$(PKG)_GH_CONF  := libsdl-org/SDL/releases/tag,release-,,
+$(PKG)_GH_CONF  := libsdl-org/SDL/releases,release-,,
 $(PKG)_DEPS     := cc libiconv libsamplerate
 
 define $(PKG)_BUILD
