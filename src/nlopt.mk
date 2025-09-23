@@ -6,7 +6,7 @@ $(PKG)_DESCR    := NLopt
 $(PKG)_IGNORE   :=
 $(PKG)_VERSION  := 2.10.0
 $(PKG)_CHECKSUM := 506f83a9e778ad4f204446e99509cb2bdf5539de8beccc260a014bd560237be1
-$(PKG)_GH_CONF  := stevengj/nlopt/releases/tags,v
+$(PKG)_GH_CONF  := stevengj/nlopt/tags,v
 $(PKG)_DEPS     := cc
 
 define $(PKG)_BUILD
