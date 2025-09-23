@@ -6,9 +6,7 @@ $(PKG)_DESCR    := HIREDIS
 $(PKG)_IGNORE   :=
 $(PKG)_VERSION  := 1.2.0
 $(PKG)_CHECKSUM := 82ad632d31ee05da13b537c124f819eb88e18851d9cb0c30ae0552084811588c
-$(PKG)_GH_CONF  := redis/hiredis/releases,v
-$(PKG)_SUBDIR   := $(PKG)-$($(PKG)_VERSION)
-$(PKG)_URL      := https://github.com/redis/hiredis/archive/v$($(PKG)_VERSION).tar.gz
+$(PKG)_GH_CONF  := redis/hiredis/tags,v
 $(PKG)_DEPS     := cc openssl
 
 define $(PKG)_BUILD
