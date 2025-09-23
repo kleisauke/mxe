@@ -6,7 +6,7 @@ $(PKG)_DESCR    := SDL2_image
 $(PKG)_IGNORE   :=
 $(PKG)_VERSION  := 2.0.5
 $(PKG)_CHECKSUM := 76b7f67f4c1a5f8368658f0e1e59bdaa4555d1cc7f3a4413178cd735019983ff
-$(PKG)_GH_CONF  := libsdl-org/SDL_image/releases/tag,release-,,
+$(PKG)_GH_CONF  := libsdl-org/SDL_image/tags,release-,,
 $(PKG)_DEPS     := cc jpeg libpng libwebp sdl2 tiff
 
 define $(PKG)_BUILD

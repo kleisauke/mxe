@@ -6,7 +6,7 @@ $(PKG)_DESCR    := A C library for parsing and emitting YAML.
 $(PKG)_IGNORE   :=
 $(PKG)_VERSION  := 0.2.5
 $(PKG)_CHECKSUM := fa240dbf262be053f3898006d502d514936c818e422afdcf33921c63bed9bf2e
-$(PKG)_GH_CONF  := yaml/libyaml/releases/latest
+$(PKG)_GH_CONF  := yaml/libyaml/tags
 $(PKG)_DEPS     := cc
 
 define $(PKG)_BUILD

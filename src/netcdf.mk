@@ -6,7 +6,7 @@ $(PKG)_DESCR    := NetCDF
 $(PKG)_IGNORE   :=
 $(PKG)_VERSION  := 4.8.1
 $(PKG)_CHECKSUM := bc018cc30d5da402622bf76462480664c6668b55eb16ba205a0dfb8647161dd0
-$(PKG)_GH_CONF  := Unidata/netcdf-c/releases,v
+$(PKG)_GH_CONF  := Unidata/netcdf-c/tags,v
 $(PKG)_DEPS     := cc curl hdf4 hdf5 jpeg portablexdr zlib
 
 define $(PKG)_BUILD
