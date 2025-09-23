@@ -7,6 +7,7 @@ $(PKG)_IGNORE   :=
 $(PKG)_VERSION  := 3.3.2
 $(PKG)_CHECKSUM := 50a28cb668de47b0e006cd6ebed8cf4f76c1cac6116fb3c978c44478219103f2
 $(PKG)_GH_CONF  := wxWidgets/wxWidgets/releases/latest,v,,,,.tar.bz2
+$(PKG)_SUBDIR   := wxWidgets-$($(PKG)_VERSION)
 $(PKG)_DEPS     := cc expat jpeg libiconv libpng sdl tiff zlib
 
 define $(PKG)_BUILD

@@ -5,7 +5,7 @@ $(PKG)_WEBSITE  := https://www.winimage.com/zLibDll/minizip.html
 $(PKG)_IGNORE   :=
 $(PKG)_VERSION  := 4.2.1
 $(PKG)_CHECKSUM := 3cc35c2cb925dbe67cc801e3234b31b0f30197812a99377352fa1b551ab3d011
-$(PKG)_GH_CONF  := zlib-ng/minizip-ng/releases
+$(PKG)_GH_CONF  := zlib-ng/minizip-ng/tags
 $(PKG)_DEPS     := cc bzip2 openssl xz zlib zstd
 
 define $(PKG)_BUILD
