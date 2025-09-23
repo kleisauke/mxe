@@ -5,7 +5,7 @@ $(PKG)_WEBSITE  := https://libgit2.github.com/
 $(PKG)_IGNORE   :=
 $(PKG)_VERSION  := 1.9.7
 $(PKG)_CHECKSUM := 1a4fbe7589e814777ae76b64734ad80f4ecad22cd33a22682a2aaea4ae5375e7
-$(PKG)_GH_CONF  := libgit2/libgit2/releases/latest,v
+$(PKG)_GH_CONF  := libgit2/libgit2/tags,v
 $(PKG)_DEPS     := cc libssh2 pcre2 zlib
 
 define $(PKG)_BUILD

@@ -6,7 +6,7 @@ $(PKG)_DESCR    := Geospatial SDK for OpenSceneGraph
 $(PKG)_IGNORE   :=
 $(PKG)_VERSION  := 2.10
 $(PKG)_CHECKSUM := 986ad26b8e340a40ac6404137aa61f80a030030fa3e8cf5fbdf183c697f2556e
-$(PKG)_GH_CONF  := gwaldron/osgearth/releases/latest, osgearth-
+$(PKG)_GH_CONF  := gwaldron/osgearth/tags,osgearth-
 $(PKG)_DEPS     := curl cc gdal openscenegraph poco sqlite zlib
 
 define $(PKG)_BUILD

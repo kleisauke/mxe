@@ -6,7 +6,7 @@ $(PKG)_DESCR    := Fast C++ logging library.
 $(PKG)_IGNORE   :=
 $(PKG)_VERSION  := 1.11.0
 $(PKG)_CHECKSUM := ca5cae8d6cac15dae0ec63b21d6ad3530070650f68076f3a4a862ca293a858bb
-$(PKG)_GH_CONF  := gabime/spdlog/releases,v
+$(PKG)_GH_CONF  := gabime/spdlog/tags,v
 $(PKG)_DEPS     := cc
 
 define $(PKG)_BUILD

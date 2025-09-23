@@ -5,7 +5,7 @@ $(PKG)_WEBSITE  := https://github.com/mdbtools/mdbtools
 $(PKG)_IGNORE   :=
 $(PKG)_VERSION  := 1.0.0
 $(PKG)_CHECKSUM := 3446e1d71abdeb98d41e252777e67e1909b186496fda59f98f67032f7fbcd955
-$(PKG)_GH_CONF  := mdbtools/mdbtools/releases, v
+$(PKG)_GH_CONF  := mdbtools/mdbtools/releases,v
 $(PKG)_DEPS     := cc glib
 
 define $(PKG)_UPDATE

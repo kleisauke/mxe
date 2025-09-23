@@ -6,7 +6,7 @@ $(PKG)_DESCR    := SDL2_mixer
 $(PKG)_IGNORE   :=
 $(PKG)_VERSION  := 2.8.1
 $(PKG)_CHECKSUM := 63804b4b2ba503865c0853f102231aeff489b1dfc6dea4750a69e2a8ef54b2bb
-$(PKG)_GH_CONF  := libsdl-org/SDL_mixer/releases/tag,release-,,
+$(PKG)_GH_CONF  := libsdl-org/SDL_mixer/tags,release-,,
 $(PKG)_DEPS     := cc libmodplug mpg123 ogg opusfile sdl2 smpeg2 vorbis
 
 define $(PKG)_BUILD

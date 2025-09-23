@@ -5,7 +5,7 @@ $(PKG)_WEBSITE  := https://github.com/google/brotli
 $(PKG)_IGNORE   :=
 $(PKG)_VERSION  := 1.2.0
 $(PKG)_CHECKSUM := 816c96e8e8f193b40151dad7e8ff37b1221d019dbcb9c35cd3fadbfe6477dfec
-$(PKG)_GH_CONF  := google/brotli/releases/tag,v,,
+$(PKG)_GH_CONF  := google/brotli/tags,v
 $(PKG)_DEPS     := cc
 
 define $(PKG)_BUILD

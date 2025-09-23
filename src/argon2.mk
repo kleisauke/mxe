@@ -3,7 +3,7 @@
 PKG             := argon2
 $(PKG)_WEBSITE  := https://github.com/P-H-C/phc-winner-argon2
 $(PKG)_VERSION  := 20190702
-$(PKG)_GH_CONF  := P-H-C/phc-winner-argon2/releases
+$(PKG)_GH_CONF  := P-H-C/phc-winner-argon2/tags
 $(PKG)_CHECKSUM := daf972a89577f8772602bf2eb38b6a3dd3d922bf5724d45e7f9589b5e830442c
 $(PKG)_DEPS     := cc
 
