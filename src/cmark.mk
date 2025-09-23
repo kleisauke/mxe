@@ -6,7 +6,7 @@ $(PKG)_DESCR    := CommonMark parsing and rendering library and program in C
 $(PKG)_IGNORE   :=
 $(PKG)_VERSION  := 0.29.0
 $(PKG)_CHECKSUM := 2558ace3cbeff85610de3bda32858f722b359acdadf0c4691851865bb84924a6
-$(PKG)_GH_CONF  := commonmark/cmark/releases
+$(PKG)_GH_CONF  := commonmark/cmark/tags
 $(PKG)_DEPS     := cc
 
 define $(PKG)_BUILD

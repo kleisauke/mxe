@@ -6,7 +6,7 @@ $(PKG)_DESCR    := NetCDF-CXX4
 $(PKG)_IGNORE   :=
 $(PKG)_VERSION  := 4.3.0
 $(PKG)_CHECKSUM := 25da1c97d7a01bc4cee34121c32909872edd38404589c0427fefa1301743f18f
-$(PKG)_GH_CONF  := Unidata/netcdf-cxx4/releases,v
+$(PKG)_GH_CONF  := Unidata/netcdf-cxx4/tags,v
 $(PKG)_DEPS     := cc netcdf
 
 define $(PKG)_BUILD

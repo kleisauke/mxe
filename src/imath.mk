@@ -4,9 +4,10 @@ PKG             := imath
 $(PKG)_WEBSITE  := https://github.com/AcademySoftwareFoundation/Imath
 $(PKG)_IGNORE   :=
 $(PKG)_VERSION  := 3.2.2
-$(PKG)_FILE     := Imath-$($(PKG)_VERSION).tar.gz
 $(PKG)_CHECKSUM := b4275d83fb95521510e389b8d13af10298ed5bed1c8e13efd961d91b1105e462
 $(PKG)_GH_CONF  := AcademySoftwareFoundation/Imath/tags,v
+$(PKG)_SUBDIR   := Imath-$($(PKG)_VERSION)
+$(PKG)_FILE     := Imath-$($(PKG)_VERSION).tar.gz
 $(PKG)_DEPS     := cc
 
 define $(PKG)_BUILD

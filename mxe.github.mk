@@ -99,7 +99,7 @@ define MXE_SETUP_GITHUB
     $(PKG)_TAG_FILTER  := $(GH_TAG_FILTER)
     $(PKG)_VERSION_SEP := $(or $(GH_VERSION_SEP),.)
     $(PKG)_ARCHIVE_EXT := $(or $(GH_ARCHIVE_EXT),.tar.gz)
-    $(PKG)_FILE        := $(or $($(PKG)_FILE),$(PKG)-$$(filter-out $$(PKG)-,$$($$(PKG)_TAG_PREFIX))$($(PKG)_VERSION)$$($$(PKG)_TAG_SUFFIX)$$($$(PKG)_ARCHIVE_EXT))
+    $(PKG)_FILE        := $(or $($(PKG)_FILE),$(PKG)-$($(PKG)_VERSION)$$($$(PKG)_ARCHIVE_EXT))
     $(if $(and $(GH_BRANCH),$(GH_TAG_VARS)),\
         $(error $(newline) $(PKG) specifies both branch and tag variables $(newline)))
     $(if $(filter-out $(GH_APIS),$(GH_API))$(filter x,x$(GH_API)),\
@@ -115,7 +115,7 @@ define MXE_SETUP_GITHUB_BRANCHES
 endef
 
 define MXE_SETUP_GITHUB_RELEASES
-    $(PKG)_SUBDIR  := $(or $($(PKG)_SUBDIR),$($(PKG)_GH_REPO)-$(if $(call sne,v,$($(PKG)_TAG_PREFIX)),$($(PKG)_TAG_PREFIX))$(subst .,$($(PKG)_VERSION_SEP),$($(PKG)_VERSION))$($(PKG)_TAG_SUFFIX))
+    $(PKG)_SUBDIR  := $(or $($(PKG)_SUBDIR),$(PKG)-$($(PKG)_VERSION))
     $(PKG)_TAG_REF := $(or $($(PKG)_TAG_REF),$($(PKG)_TAG_PREFIX)$(subst .,$($(PKG)_VERSION_SEP),$($(PKG)_VERSION))$($(PKG)_TAG_SUFFIX))
     $(PKG)_URL     := $(or $($(PKG)_URL),https://github.com/$($(PKG)_GH_OWNER)/$($(PKG)_GH_REPO)/releases/download/$($(PKG)_TAG_REF)/$($(PKG)_FILE))
     $(PKG)_URL_2   := $(or $($(PKG)_URL_2),https://github.com/$($(PKG)_GH_OWNER)/$($(PKG)_GH_REPO)/archive/$($(PKG)_TAG_REF).tar.gz)

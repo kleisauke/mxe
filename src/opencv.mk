@@ -6,7 +6,7 @@ $(PKG)_DESCR    := OpenCV
 $(PKG)_IGNORE   :=
 $(PKG)_VERSION  := 4.14.0
 $(PKG)_CHECKSUM := ee8fb9b30eb60850431b4656447080e3737b56e45719c92b67f245950609f86e
-$(PKG)_GH_CONF  := opencv/opencv/releases
+$(PKG)_GH_CONF  := opencv/opencv/tags
 $(PKG)_DEPS     := cc eigen ffmpeg jasper jpeg libpng libwebp mpg123 \
                    openblas openexr protobuf tiff xz zlib
 
