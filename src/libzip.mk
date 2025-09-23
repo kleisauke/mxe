@@ -5,7 +5,7 @@ $(PKG)_WEBSITE  := https://libzip.org/
 $(PKG)_IGNORE   :=
 $(PKG)_VERSION  := 1.5.2
 $(PKG)_CHECKSUM := 905ae156f7590f4f3ab251cb79a0a48023848a7ae176143ec9467a9421bdb699
-$(PKG)_GH_CONF  := nih-at/libzip/releases,rel-,,,-
+$(PKG)_GH_CONF  := nih-at/libzip/tags,rel-,,,-
 $(PKG)_DEPS     := cc bzip2 zlib
 
 define $(PKG)_BUILD

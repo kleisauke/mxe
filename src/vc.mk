@@ -7,6 +7,7 @@ $(PKG)_IGNORE   :=
 $(PKG)_VERSION  := 1.3.3
 $(PKG)_CHECKSUM := 08c629d2e14bfb8e4f1a10f09535e4a3c755292503c971ab46637d2986bdb4fe
 $(PKG)_GH_CONF  := VcDevel/Vc/releases/latest
+$(PKG)_SUBDIR   := Vc-$($(PKG)_VERSION)
 $(PKG)_DEPS     := cc
 
 define $(PKG)_BUILD
