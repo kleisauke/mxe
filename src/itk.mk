@@ -6,7 +6,7 @@ $(PKG)_DESCR    := Insight Segmentation and Registration Toolkit (ITK)
 $(PKG)_IGNORE   :=
 $(PKG)_VERSION  := 5.4.7
 $(PKG)_CHECKSUM := c953ad7957c481dbb17cfebf03fc61e5252b2be7ccf6757d1234b48ac99914f8
-$(PKG)_GH_CONF  := InsightSoftwareConsortium/ITK/releases/latest, v
+$(PKG)_GH_CONF  := InsightSoftwareConsortium/ITK/tags,v
 $(PKG)_DEPS     := cc expat hdf5 jpeg libpng tiff zlib
 
 define $(PKG)_BUILD

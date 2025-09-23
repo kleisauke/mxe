@@ -6,8 +6,8 @@ $(PKG)_DESCR    := Geospatial SDK for OpenSceneGraph
 $(PKG)_IGNORE   :=
 $(PKG)_VERSION  := 3.8.1
 $(PKG)_CHECKSUM := 2d195ed9ec16b38373a8d2700baec2208cc18fa9a1b2ad46cd453ae8ef5cf5ed
-$(PKG)_GH_CONF  := gwaldron/osgearth/releases/latest, osgearth-
-$(PKG)_DEPS     := curl cc gdal openscenegraph sqlite zlib
+$(PKG)_GH_CONF  := gwaldron/osgearth/tags,osgearth-
+$(PKG)_DEPS     := curl cc gdal openscenegraph poco sqlite zlib
 
 define $(PKG)_BUILD
     cd '$(BUILD_DIR)' && $(TARGET)-cmake '$(SOURCE_DIR)' \

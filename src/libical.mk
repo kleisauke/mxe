@@ -4,7 +4,7 @@ PKG             := libical
 $(PKG)_WEBSITE  := https://libical.github.io/libical/
 $(PKG)_VERSION  := 2.0.0
 $(PKG)_CHECKSUM := 654c11f759c19237be39f6ad401d917e5a05f36f1736385ed958e60cf21456da
-$(PKG)_GH_CONF  := libical/libical/releases/latest, v
+$(PKG)_GH_CONF  := libical/libical/releases/latest,v
 $(PKG)_DEPS     := cc icu4c
 
 define $(PKG)_BUILD
