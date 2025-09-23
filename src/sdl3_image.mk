@@ -8,7 +8,7 @@ $(PKG)_VERSION  := 3.2.4
 $(PKG)_SUBDIR   := SDL3_image-$($(PKG)_VERSION)
 $(PKG)_FILE     := SDL3_image-$($(PKG)_VERSION).tar.gz
 $(PKG)_CHECKSUM := a725bd6d04261fdda0dd8d950659e1dc15a8065d025275ef460d32ae7dcfc182
-$(PKG)_GH_CONF  := libsdl-org/SDL_image/releases/tag,release-,,
+$(PKG)_GH_CONF  := libsdl-org/SDL_image/releases,release-,,
 $(PKG)_DEPS     := cc jpeg libpng libwebp sdl3 tiff
 
 define $(PKG)_BUILD
