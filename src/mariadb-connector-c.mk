@@ -5,7 +5,7 @@ $(PKG)_WEBSITE  := https://mariadb.com
 $(PKG)_IGNORE   :=
 $(PKG)_VERSION  := 3.4.7
 $(PKG)_CHECKSUM := cf81cd1c71c3199da9d2125aee840cb6083d43e1ea4c60c4be5045bfc7824eba
-$(PKG)_GH_CONF  := mariadb-corporation/mariadb-connector-c/releases,v
+$(PKG)_GH_CONF  := mariadb-corporation/mariadb-connector-c/tags,v
 $(PKG)_DEPS     := cc dlfcn-win32 zlib zstd
 
 define $(PKG)_BUILD
