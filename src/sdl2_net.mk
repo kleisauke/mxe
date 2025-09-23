@@ -5,7 +5,7 @@ $(PKG)_WEBSITE  := https://www.libsdl.org/
 $(PKG)_IGNORE   :=
 $(PKG)_VERSION  := 2.0.1
 $(PKG)_CHECKSUM := 1fefe563ea333a2655c32169d03a376a334cdbe39da51fd424bf5f430dec83f4
-$(PKG)_GH_CONF  := libsdl-org/SDL_net/releases/tag,release-,,
+$(PKG)_GH_CONF  := libsdl-org/SDL_net/tags,release-,,
 $(PKG)_DEPS     := cc sdl2
 
 define $(PKG)_BUILD
