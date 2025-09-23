@@ -6,10 +6,7 @@ $(PKG)_DESCR    := PCRE2
 $(PKG)_IGNORE   :=
 $(PKG)_VERSION  := 10.48
 $(PKG)_CHECKSUM := b6c68fdf6f3ac31388b50aa89ff0fc49c00c987c16e7b5146491d12003f2c8ed
-$(PKG)_GH_CONF  := PCRE2Project/pcre2/releases,pcre2-
-$(PKG)_SUBDIR   := $(PKG)-$($(PKG)_VERSION)
-$(PKG)_FILE     := $(PKG)-$($(PKG)_VERSION).tar.bz2
-$(PKG)_URL      := https://github.com/PCRE2Project/pcre2/releases/download/pcre2-$($(PKG)_VERSION)/$($(PKG)_FILE)
+$(PKG)_GH_CONF  := PCRE2Project/pcre2/releases,pcre2-,,,,.tar.bz2
 $(PKG)_DEPS     := cc
 
 define $(PKG)_BUILD_SHARED
