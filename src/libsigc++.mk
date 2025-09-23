@@ -6,9 +6,7 @@ $(PKG)_IGNORE   :=
 $(PKG)_VERSION  := 2.10.7
 $(PKG)_CHECKSUM := d082a2ce72c750f66b1a415abe3e852df2eae1e8af53010f4ac2ea261a478832
 $(PKG)_GH_CONF  := libsigcplusplus/libsigcplusplus/releases,,,99,,.tar.xz
-$(PKG)_SUBDIR   := $(PKG)-$($(PKG)_VERSION)
-$(PKG)_FILE     := $(PKG)-$($(PKG)_VERSION).tar.xz
-$(PKG)_URL_2    := https://download.gnome.org/sources/libsigc++/$(call SHORT_PKG_VERSION,$(PKG))/$($(PKG)_FILE)
+$(PKG)_URL_2    := https://download.gnome.org/sources/libsigc++/$(call SHORT_PKG_VERSION,$(PKG))/libsigc++-$($(PKG)_VERSION).tar.xz
 $(PKG)_DEPS     := cc meson-wrapper
 
 define $(PKG)_BUILD

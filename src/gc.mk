@@ -6,8 +6,6 @@ $(PKG)_IGNORE   :=
 $(PKG)_VERSION  := 8.0.4
 $(PKG)_CHECKSUM := 436a0ddc67b1ac0b0405b61a9675bca9e075c8156f4debd1d06f3a56c7cd289d
 $(PKG)_GH_CONF  := ivmai/bdwgc/releases/latest,v
-$(PKG)_SUBDIR   := $(PKG)-$($(PKG)_VERSION)
-$(PKG)_URL      := https://github.com/ivmai/bdwgc/releases/download/v$($(PKG)_VERSION)/$($(PKG)_SUBDIR).tar.gz
 $(PKG)_DEPS     := cc libatomic_ops
 
 define $(PKG)_BUILD
