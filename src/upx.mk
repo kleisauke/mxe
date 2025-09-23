@@ -8,6 +8,7 @@ $(PKG)_VERSION  := 3.96
 $(PKG)_CHECKSUM := 47774df5c958f2868ef550fb258b97c73272cb1f44fe776b798e393465993714
 $(PKG)_GH_CONF  := upx/upx/releases/latest,v,,,,.tar.xz
 $(PKG)_SUBDIR   := $(PKG)-$($(PKG)_VERSION)-src
+$(PKG)_FILE     := $(PKG)-$($(PKG)_VERSION)-src.tar.xz
 $(PKG)_DEPS     := cc ucl zlib
 $(PKG)_DEPS_$(BUILD) := ucl zlib
 $(PKG)_TARGETS  := $(BUILD) $(MXE_TARGETS)

@@ -117,7 +117,7 @@ endef
 define MXE_SETUP_GITHUB_RELEASES
     $(PKG)_SUBDIR  := $(or $($(PKG)_SUBDIR),$($(PKG)_GH_REPO)-$(if $(call sne,v,$($(PKG)_TAG_PREFIX)),$($(PKG)_TAG_PREFIX))$(subst .,$($(PKG)_VERSION_SEP),$($(PKG)_VERSION))$($(PKG)_TAG_SUFFIX))
     $(PKG)_TAG_REF := $(or $($(PKG)_TAG_REF),$($(PKG)_TAG_PREFIX)$(subst .,$($(PKG)_VERSION_SEP),$($(PKG)_VERSION))$($(PKG)_TAG_SUFFIX))
-    $(PKG)_URL     := $(or $($(PKG)_URL),https://github.com/$($(PKG)_GH_OWNER)/$($(PKG)_GH_REPO)/releases/download/$($(PKG)_TAG_REF)/$($(PKG)_SUBDIR)$($(PKG)_ARCHIVE_EXT))
+    $(PKG)_URL     := $(or $($(PKG)_URL),https://github.com/$($(PKG)_GH_OWNER)/$($(PKG)_GH_REPO)/releases/download/$($(PKG)_TAG_REF)/$($(PKG)_FILE))
     $(PKG)_URL_2   := $(or $($(PKG)_URL_2),https://github.com/$($(PKG)_GH_OWNER)/$($(PKG)_GH_REPO)/archive/$($(PKG)_TAG_REF).tar.gz)
     $(PKG)_UPDATE  := $(or $($(PKG)_UPDATE),$(call MXE_GET_GH_RELEASE,$($(PKG)_GH_OWNER)/$($(PKG)_GH_REPO)/releases$($(PKG)_GH_LATEST),$($(PKG)_TAG_PREFIX),$($(PKG)_TAG_SUFFIX),$(or $($(PKG)_TAG_FILTER),$(GITHUB_TAG_FILTER)),$($(PKG)_VERSION_SEP)))
 endef
