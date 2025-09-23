@@ -8,7 +8,7 @@ $(PKG)_VERSION  := 2.26.2
 $(PKG)_SUBDIR   := SDL2-$($(PKG)_VERSION)
 $(PKG)_FILE     := SDL2-$($(PKG)_VERSION).tar.gz
 $(PKG)_CHECKSUM := 95d39bc3de037fbdfa722623737340648de4f180a601b0afad27645d150b99e0
-$(PKG)_GH_CONF  := libsdl-org/SDL/releases/tag,release-,,
+$(PKG)_GH_CONF  := libsdl-org/SDL/releases,release-,,
 $(PKG)_DEPS     := cc libiconv libsamplerate
 
 define $(PKG)_BUILD
