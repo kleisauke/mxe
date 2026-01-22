@@ -18,6 +18,8 @@ define $(PKG)_PREPARE
     # stored in the build directory.
     $(eval export CARGO_HOME := $(BUILD_DIR)/.cargo)
 
+    cd '$(SOURCE_DIR)' && MXE_ENABLE_NETWORK=1 cargo update -p cargo
+
     cd '$(SOURCE_DIR)' && MXE_ENABLE_NETWORK=1 cargo fetch \
         --locked \
         --target '$(shell rustc --print host-tuple)'
