@@ -4,12 +4,12 @@ PKG             := pe-util
 $(PKG)_WEBSITE  := https://github.com/gsauthof/pe-util
 $(PKG)_DESCR    := List shared object dependencies of a portable executable (PE)
 $(PKG)_IGNORE   :=
-$(PKG)_VERSION  := 2af684a
-$(PKG)_CHECKSUM := 9bb507941c14a8f6e55ff5e8ebec95db5bbebc9139e69f9f54db324bbad0d39d
+$(PKG)_VERSION  := dc5dda5
+$(PKG)_CHECKSUM := c3b926d8367154fb65a2d49f88cf1389e06a5ce0cc44c7b3526d901ecaba7e1d
 $(PKG)_GH_CONF  := gsauthof/pe-util/branches/master
 $(PKG)_TARGETS  := $(BUILD) $(MXE_TARGETS)
 $(PKG)_DEPS     := $(BUILD)~$(PKG)
-$(PKG)_DEPS_$(BUILD) := boost cmake pe-parse
+$(PKG)_DEPS_$(BUILD) := cmake pe-parse
 
 define $(PKG)_PRE_CONFIGURE
     # expects pe-parse in source tree as git submodule
@@ -38,14 +38,8 @@ endef
 define $(PKG)_BUILD_$(BUILD)
     $($(PKG)_PRE_CONFIGURE)
     # build and install the binary
-    cd '$(BUILD_DIR)' && cmake '$(SOURCE_DIR)' \
-        -DCMAKE_INSTALL_PREFIX='$(PREFIX)/$(TARGET)' \
-        -DBOOST_ROOT='$(PREFIX)/$(TARGET)' \
-        -DBOOST_INCLUDEDIR='$(PREFIX)/$(TARGET)/include' \
-        -DBOOST_LIBRARYDIR='$(PREFIX)/$(TARGET)/lib' \
-        -DBoost_NO_SYSTEM_PATHS=ON \
-        -DBoost_NO_BOOST_CMAKE=ON \
-        -DCMAKE_CXX_FLAGS='-I$(PREFIX)/$(TARGET)/include'
-    $(MAKE) -C '$(BUILD_DIR)' -j '$(JOBS)'
-    $(MAKE) -C '$(BUILD_DIR)' -j 1 install
+    '$(TARGET)-cmake' -S '$(SOURCE_DIR)' -B '$(BUILD_DIR)' \
+        -DCMAKE_INSTALL_PREFIX='$(PREFIX)/$(TARGET)'
+    '$(TARGET)-cmake' --build '$(BUILD_DIR)' -j '$(JOBS)'
+    '$(TARGET)-cmake' --install '$(BUILD_DIR)'
 endef
