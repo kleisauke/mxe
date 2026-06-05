@@ -292,6 +292,9 @@ ENV_WHITELIST += MAKE% MXE% $(PRELOAD_VARS) WINEPREFIX
 # 1. https://github.com/mxe/mxe/issues/697
 ENV_WHITELIST += ACLOCAL_PATH LD_LIBRARY_PATH
 
+# https://reproducible-builds.org/docs/source-date-epoch/
+ENV_WHITELIST += SOURCE_DATE_EPOCH
+
 unexport $(filter-out $(ENV_WHITELIST),$(shell env | cut -d '=' -f1))
 
 SHORT_PKG_VERSION = \
